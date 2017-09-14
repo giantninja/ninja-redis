@@ -61,7 +61,7 @@ class NinjaRedis extends NinjaSentinel
     public function hmget($key, $force_master = false)
     {
         try {
-            $mode = (($force_master || SECURE_SERVER === true) ? 'master' : 'read');
+            $mode = (($force_master === true) ? 'master' : 'read');
             if ($redis = $this->_getClient($mode)) {
                 if ($res = $redis->hGetAll($key)) {
                     $res['redis_server'] = $redis->getHost();
@@ -146,7 +146,7 @@ class NinjaRedis extends NinjaSentinel
     public function get($key, $force_master = false)
     {
         try {
-            $mode = (($force_master || SECURE_SERVER === true) ? 'master' : 'read');
+            $mode = (($force_master === true) ? 'master' : 'read');
             if ($redis = $this->_getClient($mode)) {
                 // if $key is an array of cache keys, we'll use mGet (multi get)
                 if (is_array($key)) {
@@ -241,7 +241,7 @@ class NinjaRedis extends NinjaSentinel
     public function lRangeAll($key, $force_master = false)
     {
         try {
-            $mode = (($force_master || SECURE_SERVER === true) ? 'master' : 'read');
+            $mode = (($force_master === true) ? 'master' : 'read');
             if ($redis = $this->_getClient($mode)) {
                 // lRange(key, start, end)... 0 to last element (-1)
                 if ($res = $redis->lRange($key, 0, -1)) {
