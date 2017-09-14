@@ -1,10 +1,10 @@
 # redis-sentinel
 Wrapper class for phpredis (PECL) based php client, with added support for redis sentinel.
-All normal phpredis client methods should work transparently, while making use of a
-redis sentinel master/slave setup.
+All normal phpredis client methods that aren't overloaded and normally available through PHPs `Redis` obj)
+should work transparently, while making use of a redis sentinel master/slave setup.
 
 Writes will use the master reported by sentinel, and reads can be set to use
-either only the slaves, or master/slave, or master only.
+either only the slaves, or randomly picked master/slave instance, or master only.
 
 ## examples
 Get Redis client set to the current master/slaves as reported via sentinel.
